@@ -68,6 +68,14 @@
   
   - ###### Nel file regex_formats.py sono presenti le varies stringhe di interpretazione dei messaggi arrivati dall'esp32 per scomporre i messaggi, per fare cio viene usato il modulo python re che premette di interpretare stringhe secondo espressioni regolari(regex)
   
-  - ###### Nel file decompose.py sono presenti le varie funzioni che interpretano i vari tipi di messaggi
+  - ###### Nel file decompose.py sono presenti le varie funzioni che interpretano i vari tipi di messaggi che usano i formati dichiarati in regex_formats
+    
+    
+
+- ###### La struttura del blocco "logica mqtt" si trova nei files [funzioni_logica_mqtt.py](./funzioni_logica_mqtt.py) e [main.py](./main.py):
+  
+  - ###### Il file funzioni_logica_mqtt dichiara varie funzioni importate da main.py che servono ad applicare la logica del broker mqtt a dei cambiamenti sul database
+  
+  - ###### Invece il file main.py e il "flusso principale", esso quando riceve un messaggio dall'esp32 stabilisce che tipo di messaggio sia, lo decompone grazie alle funzioni dichiarate in decompose.py e poi inserisce le informazioni ottenute nell'opportuna funzione da funzioni_logica_mqtt.py per aggiornare il database, oltre a cio`, rimanda anche indietro i messaggi per indicare all'esp32 a chi mandare cosa
 
 
