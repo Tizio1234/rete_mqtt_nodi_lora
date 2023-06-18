@@ -65,6 +65,6 @@ while True:
             for scheda in schede:
                 output = compose_message(scheda, message, topic)
                 esp32.write(output)
-                print(output)
+                #print(output)
                 sleep(2)
         print("handled pub request")
