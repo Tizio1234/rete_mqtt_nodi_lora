@@ -3,8 +3,9 @@ from os import environ
 environ.setdefault( "DJANGO_SETTINGS_MODULE", "gestione_schede_lora_1.settings")
 import django
 django.setup()
+
+# Import funzioni responsabili per l'applicazione della logica mqtt al database
 from funzioni_logica_mqtt import handle_pub_request, handle_sub_request, handle_unsub_request
-from mqtt_lora.models import Scheda, Topic
 
 # Import funzioni  da decompose per convertire i messaggi ricevuti dell'esp32 in oggetti
 from decompose import decompose_pub_request, decompose_sub_request, decompose_unsub_request
@@ -26,11 +27,10 @@ while True:
         sleep(1)
 
 # Import libreria re per interpretare i messaggi ricevuti in seriale
-import re
+from re import match, DOTALL
 
 # Import file regex_formats dove ci sono i vari formati regex per interpretare i messaggi
-import regex_formats
-
+from regex_formats import general_message_format
 # Inizio programma vero e proprio
 while True:
     sleep(.1)
@@ -43,7 +43,7 @@ while True:
     print("Data received: ", data, sep=None)
 
     # Interpreta messaggio secondo il formato generale di un messaggio
-    message_match = re.match(regex_formats.general_message_format, data, flags=re.DOTALL)
+    message_match = match(general_message_format, data, flags=DOTALL)
 
     # Se non c'e` stato alcun match riinizia da capo
     if message_match is None: continue

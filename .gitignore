@@ -1,1 +1,5 @@
 gestione_schede_lora_1/db.sqlite3
+./gestione_schede_lora_1/gestione_schede_lora_1/__pycache__
+./gestione_schede_lora_1/__pycache__
+./gestione_schede_lora_1/mqtt_lora/__pycache__
+./gestione_schede_lora_1/mqtt_lora/migrations/__pycache__
