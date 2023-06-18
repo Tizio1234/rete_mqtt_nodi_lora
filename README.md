@@ -90,6 +90,7 @@ sudo apt install git
 ```
 git clone https://github.com/Tizio1234/rete_mqtt_nodi_lora.git
 ```
+(Incompleto, i comandi seguenti richiedono installazione di pacchetti ancora non documentata)
 ###### Entrare nella cartella gestione_schede_lora_1 ed eseguire i seguenti comandi per preparare il database Django:
 ```
 python manage.py makemigrations
