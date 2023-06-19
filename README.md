@@ -86,3 +86,23 @@
   - ###### Il file funzioni_logica_mqtt dichiara varie funzioni importate da main.py che servono ad applicare la logica del broker mqtt a dei cambiamenti sul database
   
   - ###### Invece il file main.py e il "flusso principale", esso quando riceve un messaggio dall'esp32 stabilisce che tipo di messaggio sia, lo decompone grazie alle funzioni dichiarate in decompose.py e poi inserisce le informazioni ottenute nell'opportuna funzione da funzioni_logica_mqtt.py per aggiornare il database, oltre a cio`, rimanda anche indietro i messaggi per indicare all'esp32 a chi mandare cosa
+
+## Installazione e primo avvio
+
+###### Per prima cosa assicurarsi di aver installato python, pip e git, i seguenti comandi valgono dalla shell bash su una qualsiasi distro linux(testati ubuntu 22.04 LTS e debian 11), se non presenti nel sistema verranno installati:
+```
+sudo apt install python
+sudo apt install python3-pip
+sudo apt install git
+```
+###### Poi clonare questa repository in una cartella di posizione arbitraria:
+```
+git clone https://github.com/Tizio1234/rete_mqtt_nodi_lora.git
+```
+(Incompleto, i comandi seguenti richiedono installazione di pacchetti ancora non documentata)
+###### Entrare nella cartella gestione_schede_lora_1 ed eseguire i seguenti comandi per preparare il database Django:
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+... da completare
