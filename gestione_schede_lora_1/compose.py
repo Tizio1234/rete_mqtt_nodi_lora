@@ -9,6 +9,6 @@ def compose_message(scheda:Scheda, message:str, topic:Topic):
     buffer += topic.nome.encode("utf-8")
     buffer += b"\r"
     buffer += message.encode("utf-8")
-    buffer += b"\n"
     buffer += b"\x21"
+    buffer += b"\n"
     return buffer

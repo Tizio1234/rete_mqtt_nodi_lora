@@ -21,7 +21,7 @@ esp32 = None
 
 while True:
     try:
-        esp32 = Serial("/dev/virtualport1", 115200)
+        esp32 = Serial(environ.get("esp32"), 115200)
         break
     except SerialException:
         sleep(1)
@@ -46,25 +46,30 @@ while True:
     message_match = match(general_message_format, data, flags=DOTALL)
 
     # Se non c'e` stato alcun match riinizia da capo
-    if message_match is None: continue
+    if message_match is None:
+        print("Invalid input")
+        continue
 
     message_type, message_content = message_match.groups()
 
-    if message_type == b"S":
-        scheda, topic = decompose_sub_request(message_content)
-        handle_sub_request(scheda, topic)
-        print("handled sub request")
-    elif message_type == b"U":
-        scheda, topic = decompose_unsub_request(message_content)
-        handle_unsub_request(scheda, topic)
-        print("handled unsub request")
-    elif message_type == b"P":
-        topic, message = decompose_pub_request(message_content)
-        schede = handle_pub_request(topic, message)
-        if schede is not None:
-            for scheda in schede:
-                output = compose_message(scheda, message, topic)
-                esp32.write(output)
-                #print(output)
-                sleep(2)
-        print("handled pub request")
+    try:
+        if message_type == b"S":
+            scheda, topic = decompose_sub_request(message_content)
+            handle_sub_request(scheda, topic)
+            print("handled sub request")
+        elif message_type == b"U":
+            scheda, topic = decompose_unsub_request(message_content)
+            handle_unsub_request(scheda, topic)
+            print("handled unsub request")
+        elif message_type == b"P":
+            topic, message = decompose_pub_request(message_content)
+            schede = handle_pub_request(topic, message)
+            if schede is not None:
+                for scheda in schede:
+                    output = compose_message(scheda, message, topic)
+                    esp32.write(output)
+                    print(output)
+                    sleep(2)
+            print("handled pub request")
+    except TypeError:
+        print("Something went wrong with validating input(probably invalid input)")

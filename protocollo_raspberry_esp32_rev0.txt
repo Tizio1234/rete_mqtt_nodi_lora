@@ -3,7 +3,7 @@ Il protocollo in questione utilizzera` la porta seriale via usb
 prima di ogni messaggio si deve inviare il messaggio di handshake(<H>) e aspettare la risposta(<h>)
 
 struttura messaggio:
-<byte tipo messaggio, vedere definizioni><messaggio><\n><byte di checksum(XOR di tutti i bytes inviati)>
+<byte tipo messaggio, vedere definizioni><messaggio><byte di checksum(XOR di tutti i bytes inviati)><\n>
 
 byte tipo messaggio esp32->raspberry: S->sub request, P->pub request, U->unsub request
 byte tipo messaggio raspberry->esp32:M->messaggio

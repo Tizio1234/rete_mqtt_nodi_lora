@@ -1,4 +1,4 @@
-general_message_format = rb"^(?P<message_type>[PUS])(?P<message_content>[^\n]+)\n.$"
+general_message_format = rb"^(?P<message_type>[PUS])(?P<message_content>[^\n]+).\n$"
 
 pub_request_format = rb"^(?P<topic_name>[^\r]+)\r(?P<message_content>.+)$"
 
