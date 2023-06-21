@@ -109,5 +109,16 @@ pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
 ```
-#### Ora che il database e pronto dobbiamo solamente configurare la porta seriale a cui si colleghera l'esp32(ancora dobbiamo realizzare le librerie varie per l'esp32 master e i nodi)
-...(da continuare)
+#### Ora che il database e pronto dobbiamo solamente configurare la porta seriale a cui si colleghera l'esp32(ancora dobbiamo realizzare le librerie varie per l'esp32 master e i nodi), eseguire questo comando per impostare una variabile dell'ambiente di sviluppo dove mettiamo la nostra porta seriale, es.:
+```
+export esp32=/dev/ttyUSB0
+```
+
+#### Infine eseguire il seguente comando per iniziare il programma:
+```
+python main.py
+```
+
+#### Il programma mostrera automaticamente delle informazioni utili al debugging, per fermarlo premere ctrl+c
+
+#### Per avviarlo d'ora in poi bastera eseguire i precedenti due passaggi(se non e stato chiuso il terminale si puo saltare il primo)
