@@ -40,7 +40,7 @@ while True:
     # Se data e` vuoto allora rinizia
     if not data: continue
 
-    print("Data received: ", data, sep=None)
+    print("Data received: ", data)
 
     # Interpreta messaggio secondo il formato generale di un messaggio
     message_match = match(general_message_format, data, flags=DOTALL)
